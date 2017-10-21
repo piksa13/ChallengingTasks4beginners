@@ -1,6 +1,5 @@
 sum = 0
 n = ' '
-#while n!='q':
 while n!='q':
         n = input()
         s = n.split(' ')
