@@ -1,15 +1,16 @@
 digit = 0
-d = {'low_letters':0, 'upper_letters':0}
+d = {'low_letters': 0, 'upper_letters': 0}
+print('Write some text here:')
 for i in input():
     if i.isdigit():
-        digit +=1
+        digit += 1
     elif i.islower():
-        d['low_letters']+=1
+        d['low_letters'] += 1
     elif i.isupper():
-        d['upper_letters']+=1
+        d['upper_letters'] += 1
 
 letters = d['low_letters'] + d['upper_letters']
-
+print('Outcome:')
 print('Digits ', digit)
 print('Letters ' + str(letters))
 print('Upper case ', d['upper_letters'])

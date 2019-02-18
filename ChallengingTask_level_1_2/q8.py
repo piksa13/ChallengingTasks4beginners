@@ -1,2 +1,3 @@
 list2 = input().split(',')
-print(','.join(sorted(list2)))
+print(list2)
+print('--'.join(sorted(list2)))

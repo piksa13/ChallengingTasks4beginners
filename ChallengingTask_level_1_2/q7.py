@@ -1,3 +1,4 @@
+print('Wrire two numbers divided by comma')
 input_str = input()
 dimensions=[int(x) for x in input_str.split(',')]
 rowNum=dimensions[0]
@@ -11,7 +12,7 @@ for row in range(rowNum):
 print(multilist)
 
 
-#X,Y = int(input()), int(input())
+#X,Y = int(input()), int(input())10000
 #q = []
 #for i in range(0,X):
  #   q.append([i*j for j in range(Y)])

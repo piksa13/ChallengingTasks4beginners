@@ -1,11 +1,12 @@
 list2 = ' '
-list =[]
+list = []
+print('Input one letter')
 while True:
     list2 = input()
     if list2 !='q':
-
         list.append(list2.upper())
         print(list[-1])
+        print('Input another letter')
     else:
         print('Goodby')
         break
