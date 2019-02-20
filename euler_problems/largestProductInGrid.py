@@ -29,7 +29,7 @@ What is the greatest product of four adjacent numbers in the same direction (up,
 
 import numpy as np
 
-string_matrix ='''08 02 22 97 38 15 00 40 00 75 04 05 07 78 52 12 50 77 91 08
+given ='''08 02 22 97 38 15 00 40 00 75 04 05 07 78 52 12 50 77 91 08
     49 49 99 40 17 81 18 57 60 87 17 40 98 43 69 48 04 56 62 00
     81 49 31 73 55 79 14 29 93 71 40 67 53 88 30 03 49 13 36 65
     52 70 95 23 04 60 11 42 69 24 68 56 01 32 56 71 37 02 36 91
@@ -50,11 +50,72 @@ string_matrix ='''08 02 22 97 38 15 00 40 00 75 04 05 07 78 52 12 50 77 91 08
     20 73 35 29 78 31 90 01 74 31 49 71 48 86 81 16 23 57 05 54
     01 70 54 71 83 51 54 69 16 92 33 48 61 43 52 01 89 19 67 48'''
 
-final_matrix = []
 
-matrix_lines = string_matrix.split('\n')
-for line in matrix_lines:
-    final_matrix.append([number for number in line.split(' ') if number != ''])
+def creatingMatrix(string_matrix):
+    matrix_lines = string_matrix.split('\n')
+    final_matrix = []
+    for line in matrix_lines:
+        final_matrix.append([int(number) for number in line.split(' ') if number != ''])
+    return final_matrix
 
-print(final_matrix)
-# np.shape(final_matrix)
+def horizontalProduct(matrix):
+    horizontal_max = 0
+    for line in matrix:
+        row_len = len(line)
+        for i in range(0, row_len - 3):
+            product = line[i] * line[i + 1] * line[i + 2] * line[i + 3]
+            if product > horizontal_max:
+                horizontal_max = product
+    return horizontal_max
+
+
+def verticalProduct(matrix):
+    vertical_max = 0
+    no_rows = np.shape(matrix)[0]
+    # print(no_rows)
+    no_columns = np.shape(matrix)[1]
+    for j in range(0, no_columns):
+        for i in range(0, no_rows - 3):
+            product = matrix[i][j] * matrix[i + 1][j] * matrix[i + 2][j] * matrix[i + 3][j]
+            if product > vertical_max:
+                vertical_max = product
+    return vertical_max
+
+def diagonalProduct(matrix):
+    diagonal_max = 0
+    no_rows = np.shape(matrix)[0]
+    no_columns = np.shape(matrix)[1]
+    for j in range(0, no_rows - 3):
+        for i in range(0, no_columns - 3):
+            product = matrix[i][j] * matrix[i + 1][j + 1] * matrix[i + 2][j + 2] * matrix[i + 3][j + 3]
+            if product > diagonal_max:
+                diagonal_max = product
+    return diagonal_max
+
+def secondDiagonalProduct(matrix):
+    second_diagonal_max = 0
+    no_rows = np.shape(matrix)[0]
+    no_columns = np.shape(matrix)[1]
+    for j in range(no_rows - 3)[::-1]:
+        for i in range(no_columns - 3)[::-1]:
+            product = matrix[i][j] * matrix[i - 1][j - 1] * matrix[i - 2][j - 2] * matrix[i - 3][j - 3]
+            if product > second_diagonal_max:
+                second_diagonal_max = product
+    return second_diagonal_max
+
+# Test Data
+# print(np.shape(fin_matrix)[1])
+# test_table = [[1, 1, 2, 1, 1, 1], [7, 2, 2, 2, 2, 2], [1000, 3, 11, 3, 3, 100], [2, 1, 1, 1, 1, 5], [1, 1, 1, 1, 1, 1], [1, 1, 1, 0, 1, 1]]
+
+
+fin_matrix = creatingMatrix(given)
+hor_max = horizontalProduct(fin_matrix)
+ver_max = verticalProduct(fin_matrix)
+dia_max = diagonalProduct(fin_matrix)
+sec_dia_max = secondDiagonalProduct(fin_matrix)
+greatest_product = max(hor_max, ver_max, dia_max, sec_dia_max)
+# print(f'The greatest horizontal product is  {hor_max}')
+# print(f'The greatest vertical product is  {ver_max}')
+# print(f'The greatest right to left diagonal product is  {sec_dia_max}')
+print(f'The greatest product is {greatest_product}')
+
